@@ -4,6 +4,10 @@
 This project aims to make a Qemu-based Linux development Lab to easier the
 learning and development of the Linux Kernel itself.
 
+## Homepage
+
+    See: <http://tinylab.org/linux-lab/>
+
 ## Download the lab
 
     $ git clone https://github.com/tinyclub/linux-lab.git
@@ -58,14 +62,14 @@ Disable prebuilt kernel and rootfs via comment the `KIMAGE` and `ROOTFS`:
 
 Download the sources:
 
-    $ make source # All in one
+    $ make source -j3     # All in one
 
     $ make kernel-source  # One by one
     $ make buildroot-source
 
 Configure the sources:
 
-    $ make config  # Configure all with defconfig
+    $ make config           # Configure all with defconfig
 
     $ make kernel-defconfig # Configure one by one
     $ make root-defconfig
@@ -92,6 +96,16 @@ Boot with NFS-rootfs or RamFs:
 
     $ make boot ROOTDEV=/dev/nfs
     $ make boot ROOTDEV=/dev/ram
+
+Save your changes:
+
+    $ make save         # Save all of the configs and rootfs/kernel images
+
+    $ make kconfig-save # Save configs to machine/BOARD/, kernel config
+    $ make rconfig-save # rootfs config
+
+    $ make root-save    # Save images to prebuilt/
+    $ make kernel-save
 
 If NFS boot fails, please make sure `IP_PNP` and `ROOT_NFS` are configured in
 kernel and if issue still exists, then try to fix up it:
